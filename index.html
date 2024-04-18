@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunQuote Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./assets/css/style2.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #075C52;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <!--
+        HEADER
+    -->
+    <header id="cs-navigation">
+        <div class="cs-container">
+            <!--Nav Logo-->
+            <a href="/" class="cs-logo" aria-label="back to home">
+                <h1 class="logo-title">Sun Quote Pro</h1>
+            </a>
+            <!-- <a href="/" class="cs-logo" aria-label="back to home">
+                <img src="" alt="logo" width="210" height="29" aria-hidden="true" decoding="async">
+            </a> -->
+            <a href="#" class="cs-button-solid cs-nav-button demo-btn" id="openModal">Book Demo</a>
+
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <!--
+            HERO
+            -->
+            <section class="animation sec-1" id="hero-856">
+                <div class="cs-container">
+                    <div class="cs-content">
+                        <div class="animated-heading">
+                            <h1 class="cs-title">Empower Your Solar Business with Sun Quote Pro</h1>
+                        </div>
+                        <div class="animated-text">
+                            <p class="cs-text">
+                                Simplify Quatations. Accelerate Sales. Drive Success
+                            </p>
+                        </div>
+                        <div id="button-box-838" class="cs-contact-group">
+                            <a href="#" class="cs-button-solid">Download from PlayStore</a>
+                            <a href="#" class="cs-button-solid">Download from Apple Store</a>
+                        </div>
+                    </div>
+                    <!--Hero Image-->
+                    <picture class="cs-picture">
+                        <!--Mobile-->
+                        <source media="(max-width: 600px)" srcset="./assets/images/solar.png">
+                        <!--Tablet-->
+                        <source media="(min-width: 601px)" srcset="./assets/images/solar.png">
+                        <!--Desktop-->
+                        <source media="(min-width: 1024px)" srcset="./assets/images/solar.png">
+                        <img aria-hidden="true" decoding="async" src="./assets/images/solar.png" alt="hero-image"
+                            width="570" height="701">
+                    </picture>
+                </div>
+                <svg class="cs-wave" width="1920" height="179" viewBox="0 0 1920 179" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M1920 179V91.3463C1835.33 91.3463 1715.47 76.615 1549.2 32.9521C1299.48 -32.3214 1132.77 12.1006 947.32 61.5167C810.762 97.9044 664.042 137 466.533 137C331.607 137 256.468 123.447 188.082 111.113C130.974 100.812 78.5746 91.3609 0 91.3609V179H1920Z"
+                        fill="#64A67E" />
+                </svg>
+            </section>
+        </article>
+    </main>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book Demo</h2>
+
+            <div id="loader">
+                <div class="loader"></div>
+            </div>
+
+            <form id="demo-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company" required>
+
+                <label for="company">Date and Time:</label>
+                <input type="text" id="bkDate" name="bkDate" required>
+
+                <button class="cs-button-solid" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            flatpickr("#bkDate", {
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
+                minDate: "today",
+            });
+
+            var modal = document.getElementById("modal");
+            var btn = document.querySelector(".demo-btn");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Handle form submission
+            var form = document.getElementById("demo-form");
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                var name = document.getElementById("name").value;
+                var email = document.getElementById("email").value;
+                var company = document.getElementById("company").value;
+                var bookDate = document.getElementById("bkDate").value;
+
+                console.log("Name:", name);
+                console.log("Email:", email);
+                console.log("Company:", company);
+                console.log("Date:", bookDate);
+
+
+                var formData = new FormData(form);
+
+                var templateParams = {
+                    from_name: formData.get("name"),
+                    from_email: formData.get("email"),
+                    book_date: formData.get("bkDate"),
+                    message:
+                        "Name: " +
+                        formData.get("name") +
+                        "\n" +
+                        "Email: " +
+                        formData.get("email") +
+                        "\n" +
+                        "Date Booked: " +
+                        formData.get("bkDate") +
+                        "\n" +
+                        "Company: " +
+                        formData.get("company"),
+                };
+
+                var loader = document.getElementById("loader");
+                loader.style.display = "block";
+
+                emailjs
+                    .send(
+                        "service_ljxpc0l",
+                        "template_yv0qmdm",
+                        templateParams,
+                        "cFE64iG9AMWFFEHhp"
+                    )
+                    .then(
+                        function (response) {
+                            loader.style.display = "none";
+                            Toastify({
+                                text: "Booked successfully.",
+                                duration: 3000,
+                                close: true,
+                                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }).showToast();
+                            form.reset();
+                            // Close the modal
+                            modal.style.display = "none";
+                        },
+                        function (error) {
+                            loader.style.display = "none";
+                            Toastify({
+                                text: "Unable to complete booking",
+                                duration: 3000,
+                                close: true,
+                                gravity: "top",
+                                position: "center",
+                                backgroundColor: "linear-gradient(to right, #FF3E4D, #FFA34F)",
+                            }).showToast();
+                        }
+                    );
+
+            });
+
+            // Submit form
+            $('#demoForm').submit(function (e) {
+                e.preventDefault();
+                // Handle form submission here
+                // For demonstration, I'm just showing a toast message
+                Toastify({
+                    text: "Form submitted successfully!",
+                    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                    duration: 3000
+                }).showToast();
+                $('#myModal').css('display', 'none'); // Close modal after submission
+            });
+        });
+    </script>
+</body>
+
+</html>
