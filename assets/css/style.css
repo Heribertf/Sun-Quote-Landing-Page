@@ -576,7 +576,8 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+#bkDate {
     padding: 9px;
     margin-bottom: 10px;
 }
